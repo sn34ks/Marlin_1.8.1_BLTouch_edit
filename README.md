@@ -3,7 +3,7 @@ This Git contains the firmware and mounting bracket for upgrading a Lulzbot TAZ 
 
 Currently my bed on my TAZ 6 has been upgraded to a magnetic PEI coated steel bed (Like Prusa MK3S).  I do not have the washers on the four corners of the bed so I don't have to worry about the nozzle hitting the washers.  
 
-** IMPORTANT - if you use this firmware as it sits, the nozzle will crash into a washer.  You will need to modify the BLTouch safe probe area in the Conditionals_LulzBot.h so that the nozzle does not crash into the washer.  These lines of code start at #444
+** IMPORTANT: SAFE ZONE - if you use this firmware as it sits, the nozzle will crash into a washer.  You will need to modify the BLTouch safe probe area in the Conditionals_LulzBot.h so that the nozzle does not crash into the washer.  These lines of code start at #444
 
 #elif defined(LULZBOT_USE_AUTOLEVELING) && defined(LULZBOT_TAZ_BED)   //BLTouch probe area
     #define LULZBOT_LEFT_PROBE_BED_POSITION       60 // Starting Point with Washers & Default Bed
@@ -37,3 +37,10 @@ Currently my bed on my TAZ 6 has been upgraded to a magnetic PEI coated steel be
   #define LULZBOT_GRID_MAX_POINTS_X            4    //BLTouch grid points
   #define LULZBOT_GRID_MAX_POINTS_Y            4
   #if defined(LULZBOT_IS_MINI)
+
+** UPLOADING FIRMWARE - Arduino sfotware is used to upload the marlin firmware to your printer.
+
+In Arduino Preferences, 
+1. Add https://raw.githubusercontent.com/ultimachine/ArduinoAddons/master/package_ultimachine_index.json to “Additional Boards Manager URL” and after saving, goto Tools-> Boards-> Board Manager and search/install Rambo & save. Rambo boards should now show under boards.
+2. Set Board to RAMBo and the programmer is set to USBtinyISP (see screenshot)
+3. Open File and navigate to “Marlin_1.8.1_BLTouch_edit.ino” in your Main program firmware folder
